@@ -4,8 +4,15 @@
     margin: 5px 15px;
 }
 
-.home-icon, .search-icon{
+.icon{
     color: white;
+}
+.verification-icon {
+    color: blue;
+}
+
+.send-icon{
+    color: green;
 }
 
 .options-for-list{
@@ -46,7 +53,6 @@
 
 .search input{
     background-color: rgb(31 29 41);
-    border: none;
     border-radius: 20px;
     color: white;
     flex: 1;

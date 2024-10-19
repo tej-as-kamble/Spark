@@ -1,4 +1,4 @@
-import MoodIcon from '@mui/icons-material/Mood';
+import profileImage from '../assets/Profile Image.png';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
 function Channels() {
@@ -6,122 +6,122 @@ function Channels() {
         {   
             name: "MS Dhoni",
             msg: "Kaise ho aap?",
-            time: "07:07"
+            time: "07:07 AM"
         },
         {   
             name: "Virat Kohli",
             msg: "Aur kya haal?",
-            time: "18:49"
+            time: "18:49 PM"
         },
         { 
             name: "Ronaldo", 
             msg: "Hey WhatsUp bro",
-            time: "07:18"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15"
+            time: "02:15 PM"
         },
         {   
             name: "MS Dhoni",
             msg: "Kaise ho aap?",
-            time: "07:07"
+            time: "07:07 AM"
         },
         {   
             name: "Virat Kohli",
             msg: "Aur kya haal?",
-            time: "18:49" 
+            time: "18:49 PM" 
         },
         { 
             name: "Ronaldo", 
             msg: "Hey WhatsUp bro",
-            time: "07:18"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15"
+            time: "02:15 PM"
         },
         {   
             name: "MS Dhoni",
             msg: "Kaise ho aap?",
-            time: "07:07" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
             msg: "Aur kya haal?",
-            time: "18:49" 
+            time: "18:49 PM" 
         },
         { 
             name: "Ronaldo", 
             msg: "Hey WhatsUp bro",
-            time: "07:18"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15"
+            time: "02:15 PM"
         },
         {   
             name: "MS Dhoni",
             msg: "Kaise ho aap?",
-            time: "07:07" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
             msg: "Aur kya haal?",
-            time: "18:49"
+            time: "18:49 PM"
         },
         { 
             name: "Ronaldo", 
             msg: "Hey WhatsUp bro",
-            time: "07:18"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15"
+            time: "02:15 PM"
         },
         {   
             name: "MS Dhoni",
             msg: "Kaise ho aap?",
-            time: "07:07" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
             msg: "Aur kya haal?",
-            time: "18:49"
+            time: "18:49 PM"
         },
         { 
             name: "Ronaldo", 
             msg: "Hey WhatsUp bro",
-            time: "07:18"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15"
+            time: "02:15 PM"
         },
         {   
             name: "MS Dhoni",
             msg: "Kaise ho aap?",
-            time: "07:07" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
             msg: "Aur kya haal?",
-            time: "18:49" 
+            time: "18:49 PM" 
         },
         { 
             name: "Ronaldo", 
             msg: "Hey WhatsUp bro",
-            time: "07:18"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15"
+            time: "02:15 PM"
         }
     ];
 
@@ -130,8 +130,7 @@ function Channels() {
             {arr.map((user, index) => (
                 <div key={index} className='each-celebrity'>
                     <div>
-                        <MoodIcon fontSize="large"/>
-                        {/* add profile image later */}
+                        <img src={profileImage} alt="profile" className='profile-pic'/>
                     </div>
                     <div className='main-msg'>
                         <h3>{user.name }<VerifiedIcon fontSize="small" color="primary"/></h3>

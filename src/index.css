@@ -1,3 +1,11 @@
 *{
     margin: 0;
 }
+
+input{
+    all: unset;
+}
+
+.opacity-half{
+    opacity: 0.5;
+}

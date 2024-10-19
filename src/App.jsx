@@ -1,6 +1,6 @@
 import './App.css'
 import LeftSide from './components/leftSide.jsx'
-import MainContent from './components/mainContent.jsx'
+import MainContent from './components/MainContent.jsx'
 
 function App() {
   return (

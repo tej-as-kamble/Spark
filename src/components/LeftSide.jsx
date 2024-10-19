@@ -2,17 +2,17 @@ import './LeftSide.css';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from '@mui/material';
-import Channels from './channels';
+import Channels from './Channels.jsx';
 
 function LeftSide() {
   return (
     <div className='left-side'>
       <div className='nav-bar'>
         <IconButton>
-          <HomeIcon fontSize="large" className='home-icon'/>
+          <HomeIcon fontSize="large" className='home-icon icon'/>
         </IconButton>
         <IconButton>
-          <SearchIcon fontSize="medium" className='search-icon'/>
+          <SearchIcon fontSize="medium" className='search-icon icon'/>
         </IconButton>
       </div>
 
