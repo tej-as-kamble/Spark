@@ -9,3 +9,8 @@ input{
 .opacity-half{
     opacity: 0.5;
 }
+
+a{
+    text-decoration: none;
+    color: inherit; 
+}

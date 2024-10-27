@@ -1,0 +1,104 @@
+.login-signup-page{
+    height: 80%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.all-form{
+    flex: 0.4;
+    height: 80%;
+    background-color: rgb(25, 25, 25);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+    border-radius: 20px;
+    color: white;
+    overflow: scroll;
+    box-shadow: 0px 10px 20px 0px rgb(0, 0, 0);
+
+}
+
+.all-form::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+
+.form-close{
+    display: flex;
+    justify-content: end;
+}
+
+.form-close button{
+    border: none;
+    background-color: transparent;
+    color: white;
+    padding: 15px 10px 0px 0px;
+}
+
+.form-close button:hover{
+    cursor: pointer;
+}
+
+
+
+
+
+.all-form input{
+    margin-top: 5px;
+    height: 40px;
+    width: 90%;
+    padding-left: 10px;
+    border: 1px solid white;
+    border-radius: 30px;
+}
+
+.form-page-btn button{
+    background-color: rgb(31 29 41);
+    border: none;
+    border-radius: 20px;
+    color: blue;
+    height: 40px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.form-page-btn button:hover{
+    background-color: rgb(37 35 49);
+    cursor: pointer;
+}
+
+.form-content{
+    margin: 10px 15px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-page-btn{
+    position: relative;
+    left: 28%;
+    width: 40%;
+}
+
+
+
+
+
+
+.toggle-signin{
+    margin-left: 15px;
+}
+.toggle-signin button{
+    background-color: transparent;
+    border: none;
+    color: blue;
+}
+
+.toggle-signin button:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

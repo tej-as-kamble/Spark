@@ -1,4 +1,6 @@
-function OwnMsg(){
+import profileImage from '../assets/Profile Image.png';
+
+function OthersMsg(){
     const arr = [
         {   
             msg: "Kaise ho aap?", 
@@ -62,14 +64,19 @@ function OwnMsg(){
         }
     ]
     return(
-        <div className="own-msg">
+        <div className="other-msg">
             {arr.map((massage, index) => (
-                <div className="each-own-msg">
-                    <div key={index} className="msg">
-                        <p>{massage.msg}</p>
+                <div key={index} className='profile-img-and-msg'>
+                    <div className='msg-profile-img'>
+                        <img src={profileImage} alt="img" />
                     </div>
-                    <div className="msg-time">
-                        <p>{massage.time}</p>
+                    <div className="each-others-msg">
+                        <div key={index} className="msg">
+                            <p>{massage.msg}</p>
+                        </div>
+                        <div className="msg-time">
+                            <p>{massage.time}</p>
+                        </div>
                     </div>
                 </div>
             ))}
@@ -77,4 +84,4 @@ function OwnMsg(){
     )
 }
 
-export default OwnMsg
+export default OthersMsg

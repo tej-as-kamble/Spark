@@ -1,6 +1,37 @@
 .notification-profile-icons{
     display: flex;
+    align-items: center;
 }
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: gold;
+}
+
+.logo img{
+    background-color: transparent;
+    height: 45px;
+}
+
+.chat-now-btn{
+    background-color: orangered;
+    border-radius: 5px;
+    color: yellow;
+    font-family: cursive, sans-serif;
+    border: 1px solid rgb(152, 152, 53, 0.1);
+    height: 40px;
+    width: 100px;
+    font-size: 18px;
+    margin-left: 20px;
+    box-shadow: rgb(208 141 174) 3px 3px 6px 0px inset, rgb(53 0 0 / 50%) -3px -3px 6px 1px inset;
+}
+
+.chat-now-btn:hover{
+    cursor: pointer;
+}
+
 
 .msg-container {
     flex: 1;
@@ -23,6 +54,35 @@
 
 
 
+/* welcome page starts here */
+.welcome-page{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-page img{
+    width: 10%;
+}
+
+.welcome-page p{
+    margin-top: 10px;
+    font-size: 150%;
+    color: wheat;
+}
+
+.welcome-page span{
+    color: rgba(245, 222, 179, 0.8);
+}
+/* welcome page ends here */
+
+
+
+
+
 
 /*own-msg starts from here */
 .own-msg{
@@ -37,6 +97,7 @@
     width: 50%;
     padding: 10px;
     border-radius: 20px 0px 30px 20px;
+    box-shadow: -5px 5px 7px -3px #000000;
 }
 
 .msg-time{
@@ -67,6 +128,7 @@
     width: 50%;
     padding: 10px;
     border-radius: 0px 20px 20px 30px;
+    box-shadow: 5px 5px 10px -3px #000000;
 }
 /*others-msg ends from here */
 
@@ -93,6 +155,7 @@
     background-color: rgb(37 35 49);
     border-radius: 40px;
     padding: 5px 10px;
+    box-shadow: -5px 5px 15px -4px #000000;
 }
 
 .channel-info{

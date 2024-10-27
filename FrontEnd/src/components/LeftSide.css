@@ -1,6 +1,7 @@
 .nav-bar{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 5px 15px;
 }
 
@@ -15,27 +16,70 @@
     color: green;
 }
 
+
+
+
+
+.loginSignup-btn button{
+    background-color: rgb(25, 25, 25);
+    border-radius: 20px;
+    color: white;
+    border: 1px solid blue;
+    height: 40px;
+    width: 100px;
+    font-size: 15px;
+}
+
+.loginSignup-btn button:hover{
+    background-color: rgb(31 29 41);
+    color: aqua;
+    border: 1px solid blue;
+    cursor: pointer;
+}
+
+.sidebar-login-btn{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-login-btn p{
+    margin: 5px;
+    color: white;
+}
+
+
+
+
 .options-for-list{
     display: flex;
     justify-content: space-between;
     margin: 0px 15px 15px 15px;
     gap: 5px;
-    height: 40px;
 }
 
 .following-btn{
     flex: 0.5;
+    color: rgb(255, 255, 255, 0.5);
 }
 
-.online-btn{
+.popular-btn{
     flex: 0.5;
+    color: rgb(255, 255, 255, 0.5);
+}
+
+.active-btn{
+    font-size: 15px;
+    color: rgb(255, 255, 255);
 }
 
 .options-for-list button{
-    background-color: rgb(31 29 41);
+    background-color: rgb(31, 29, 41);
     border: none;
     border-radius: 20px;
-    color: white;
+    height: 40px;
+    box-shadow: -2px -3px 11px -8px rgb(200 101 113) inset;
 }
 
 .options-for-list button:hover{
@@ -48,7 +92,7 @@
 .search{
     display: flex;
     margin: 0px 15px 15px 15px;
-    height: 30px;
+    height: 40px;
 }
 
 .search input{
@@ -58,6 +102,7 @@
     flex: 1;
     height: inherit;
     padding-left: 15px;
+    box-shadow: -2px -3px 11px -8px rgb(200 101 113) inset;
 }
 
 .search input:hover{

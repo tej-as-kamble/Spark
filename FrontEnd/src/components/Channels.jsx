@@ -1,7 +1,9 @@
 import profileImage from '../assets/Profile Image.png';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import { useNavigate } from 'react-router-dom';
 
 function Channels() {
+    const navigate = useNavigate();
     const arr = [
         {   
             name: "MS Dhoni",
@@ -125,10 +127,15 @@ function Channels() {
         }
     ];
 
+    const celebrityClick = (id) =>{
+        console.log("celebrity id =",id);
+        navigate("/channels/"+id);
+    }
+
     return (
         <div className='celebrity-list'>
             {arr.map((user, index) => (
-                <div key={index} className='each-celebrity'>
+                <div key={index} className='each-celebrity' onClick={()=>{celebrityClick(index)}}>
                     <div>
                         <img src={profileImage} alt="profile" className='profile-pic'/>
                     </div>
