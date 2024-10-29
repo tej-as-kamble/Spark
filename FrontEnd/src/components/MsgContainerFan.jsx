@@ -6,149 +6,148 @@ import GroupRemoveIcon from '@mui/icons-material/GroupRemove'; //after added to 
 function MsgContainerFan(ind){
     const arr = [
         {   
-           name: "MS Dhoni",
+            name: "MS Dhoni",
+            username: "mahi07",
             msg: "Kaise ho aap?",
-            time: "07:07 AM",
-            followers: "7.7M"
+            time: "07:07 AM"
         },
         {   
             name: "Virat Kohli",
+            username: "viratkohli18",
             msg: "Aur kya haal?",
-            time: "18:49 PM",
-            followers: "230.5M"
+            time: "18:49 PM"
         },
         { 
             name: "Ronaldo", 
+            username: "cr07",
             msg: "Hey WhatsUp bro",
-            time: "07:18 AM",
-            followers: "651.5M"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
+            username: "salmankhan",
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15 PM",
-            followers: "18M"
+            time: "02:15 PM"
         },
         {   
-           name: "MS Dhoni",
+            name: "MS Dhoni",
+            username: "mahi07",
             msg: "Kaise ho aap?",
-            time: "07:07 AM",
-            followers: "7.7M"
+            time: "07:07 AM"
         },
         {   
             name: "Virat Kohli",
+            username: "viratkohli18",
             msg: "Aur kya haal?",
-            time: "18:49 PM",
-            followers: "230.5M" 
+            time: "18:49 PM" 
         },
         { 
             name: "Ronaldo", 
+            username: "cr07", 
             msg: "Hey WhatsUp bro",
-            time: "07:18 AM",
-            followers: "651.5M"
-
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
+            username: "salmankhan",
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15 PM",
-            followers: "18M"
+            time: "02:15 PM"
         },
         {   
-           name: "MS Dhoni",
+            name: "MS Dhoni",
+            username: "mahi07",
             msg: "Kaise ho aap?",
-            time: "07:07 AM",
-            followers: "7.7M" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
+            username: "viratkohli18",
             msg: "Aur kya haal?",
-            time: "18:49 PM",
-            followers: "230.5M" 
+            time: "18:49 PM" 
         },
         { 
             name: "Ronaldo", 
+            username: "cr07", 
             msg: "Hey WhatsUp bro",
-            time: "07:18 AM",
-            followers: "651.5M"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
+            username: "salmankhan",
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15 PM",
-            followers: "18M"
+            time: "02:15 PM"
         },
         {   
-           name: "MS Dhoni",
+            name: "MS Dhoni",
+            username: "mahi07",
             msg: "Kaise ho aap?",
-            time: "07:07 AM",
-            followers: "7.7M" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
+            username: "viratkohli18",
             msg: "Aur kya haal?",
-            time: "18:49 PM",
-            followers: "230.5M"
+            time: "18:49 PM"
         },
         { 
             name: "Ronaldo", 
+            username: "cr07", 
             msg: "Hey WhatsUp bro",
-            time: "07:18 AM",
-            followers: "651.5M"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
+            username: "salmankhan",
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15 PM",
-            followers: "18M"
+            time: "02:15 PM"
         },
         {   
-           name: "MS Dhoni",
+            name: "MS Dhoni",
+            username: "mahi07",
             msg: "Kaise ho aap?",
-            time: "07:07 AM",
-            followers: "7.7M" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
+            username: "viratkohli18",
             msg: "Aur kya haal?",
-            time: "18:49 PM",
-            followers: "230.5M"
+            time: "18:49 PM"
         },
         { 
             name: "Ronaldo", 
+            username: "cr07", 
             msg: "Hey WhatsUp bro",
-            time: "07:18 AM",
-            followers: "651.5M"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
+            username: "salmankhan",
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15 PM",
-            followers: "18M"
+            time: "02:15 PM"
         },
         {   
-           name: "MS Dhoni",
+            name: "MS Dhoni",
+            username: "mahi07",
             msg: "Kaise ho aap?",
-            time: "07:07 AM",
-            followers: "7.7M" 
+            time: "07:07 AM" 
         },
         {   
             name: "Virat Kohli",
+            username: "viratkohli18",
             msg: "Aur kya haal?",
-            time: "18:49 PM",
-            followers: "230.5M" 
+            time: "18:49 PM" 
         },
         { 
             name: "Ronaldo", 
+            username: "cr07", 
             msg: "Hey WhatsUp bro",
-            time: "07:18 AM",
-            followers: "651.5M"
+            time: "07:18 AM"
         },
         { 
             name: "Salman Khan", 
+            username: "salmankhan",
             msg: "Aa jau kya apni par?🤬",
-            time: "02:15 PM",
-            followers: "18M"
+            time: "02:15 PM"
         }
     ];
     return(
@@ -157,7 +156,7 @@ function MsgContainerFan(ind){
                 <img src={profileImage} alt="profile" className='profile-pic'/>
                 <div>
                     <h3>{arr[ind.ind].name}</h3>
-                    <p className='followers'>{arr[ind.ind].followers}</p>
+                    <p className='username'>@{arr[ind.ind].username}</p>
                 </div>
             </div>
             <div className='follow-bnt'>

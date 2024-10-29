@@ -1,5 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp(){
     const navigate = useNavigate();
@@ -17,9 +17,9 @@ function SignUp(){
                             <label htmlFor="name">Name: </label>
                             <input type="text" name="name" placeholder="Name"/>
                         </div>
-                        <div className="form-email">
-                            <label htmlFor="email">Email: </label>
-                            <input type="email" name="email" placeholder="Email"/>
+                        <div className="form-username">
+                            <label htmlFor="username">Username: </label>
+                            <input type="text" name="username" placeholder="Username"/>
                         </div>
                         <div className="form-password">
                             <label htmlFor="password">Password: </label>
@@ -33,7 +33,9 @@ function SignUp(){
             </div>
             <div className="toggle-signin">
                 <p>Already have an account?</p>
-                <button>Login here</button>
+                <Link to="/login" title="login">
+                    <button>Login here</button>
+                </Link>
             </div>
         </div>
     )
