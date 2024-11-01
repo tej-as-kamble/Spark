@@ -20,10 +20,10 @@ function MainContent(){
     // console.log(pathParts);
 
     const userData = JSON.parse(localStorage.getItem("userData"));
-    console.log(userData);
+    // console.log(userData);
 
     const [message, setMessage] = useState('');
-    const showMsg = (msg) => {
+    const showVerificationMsg = (msg) => {
         setMessage(msg);
         setTimeout(() => {
             setMessage('');
@@ -52,7 +52,7 @@ function MainContent(){
                     <div className="notification-profile-icons">
                         {userData ? (
                             userData.channelID?.length > 0 ? (
-                                <IconButton onClick={() => { showMsg('Account is verified'); }}>
+                                <IconButton onClick={() => { showVerificationMsg('Account is verified'); }}>
                                     {message && <p style={{ color: 'white', fontSize: "16px" }}>{message}</p>}
                                     <VerifiedUserIcon fontSize="medium" className="verification-icon" />
                                 </IconButton>
@@ -73,7 +73,7 @@ function MainContent(){
                             </Link>
                         )
                         }
-                        {/* <IconButton onClick={()=>{showMsg("Verification is in Proccess")}}>
+                        {/* <IconButton onClick={()=>{showVerificationMsg("Verification is in Proccess")}}>
                             {message && <p style={{ color: 'white', fontSize: "16px" }}>{message}</p>}
                             <SafetyCheckIcon fontSize="medium" className="verification-icon"/>
                         </IconButton> */}
@@ -112,7 +112,7 @@ function MainContent(){
                 </div>
                 <div className="msg-and-info-container">
                     {/* pass id of the celebrity for name and followers*/} 
-                    {pathParts.length>2 && <MsgContainerFan ind={pathParts[2]}/>}
+                    {pathParts.length>2 && <MsgContainerFan channelUsername={pathParts[2]}/>}
                     {/* {pathParts.length>2 && <MsgContainerCelebrity/>} */}
                 </div>
                 

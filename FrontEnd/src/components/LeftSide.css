@@ -16,7 +16,15 @@
     color: green;
 }
 
+.left-side-loading{
+    width: 25%;
+}
 
+.zero-following{
+    font-family: 'Courier';
+    color: wheat;
+    margin: 15px 10%;
+}
 
 
 

@@ -177,6 +177,14 @@
 .follow-bnt{
     padding-right: 10px;
 }
+
+.unfollow-icon{
+    color: rgb(150, 56, 56);
+}
+
+.follow-icon{
+    color: rgb(150, 180, 27);
+}
 /* MsgContainerFan ends from here */
 
 
