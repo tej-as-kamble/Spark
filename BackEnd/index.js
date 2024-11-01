@@ -2,10 +2,13 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { mongoose } = require("mongoose");
 const userRouter = require('./Routes/userRoute');
+const cors = require('cors');
+// remove cors before push
 
 const app = express();
 dotenv.config();
 app.use(express.json());
+app.use(cors());
 
 const connectDb = async () => {
     try{

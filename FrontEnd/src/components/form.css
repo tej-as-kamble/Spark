@@ -46,6 +46,11 @@
 
 
 
+.form h2{
+    margin: 0px 0px 20px 15px;
+    text-decoration: underline blue;
+}
+
 
 .all-form input{
     margin-top: 5px;
@@ -54,6 +59,7 @@
     padding-left: 10px;
     border: 1px solid white;
     border-radius: 30px;
+    color: wheat;
 }
 
 .form-page-btn button{
@@ -84,6 +90,13 @@
     width: 40%;
 }
 
+.error-message{
+    color: red;
+}
+
+.success-message{
+    color: green;
+}
 
 
 

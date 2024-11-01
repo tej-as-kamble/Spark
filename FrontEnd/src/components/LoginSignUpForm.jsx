@@ -1,6 +1,6 @@
 import './form.css';
 import Login from './login.jsx';
-import SignUp from './SignUp';
+import SignUp from './SignUp.jsx';
 
 function LoginForm(formType){
     console.log(formType.formType);

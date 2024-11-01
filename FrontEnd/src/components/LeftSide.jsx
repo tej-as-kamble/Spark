@@ -16,6 +16,9 @@ function LeftSide() {
   const [showPopularChannels, setShowPopularChannels] = useState(true); //for popular button
   const [showFollowingChannels, setShowFollowingChannels] = useState(false); //for following button
 
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  // console.log(userData);
+
   const handleSearchClick = () => {
     setShowSearchBar(!showSearchBar);
     setFocusSearch(!focusSearch);
@@ -52,7 +55,7 @@ function LeftSide() {
         <SearchBar focus={focusSearch} />
       </div>
 
-      {showFollowingChannels && <SideBarLoginBtn/>} {/* if logged then dont show SideBarLoginBtn, show following channels */}
+      {showFollowingChannels && (!userData && <SideBarLoginBtn/>)} {/* if logged then dont show SideBarLoginBtn, show following channels */}
       {showPopularChannels && <Channels />}
 
 

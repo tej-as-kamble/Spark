@@ -3,6 +3,11 @@
     align-items: center;
 }
 
+.nav-profile-pic{
+    width: 35px;
+    border-radius: 50%;
+}
+
 .logo{
     display: flex;
     align-items: center;

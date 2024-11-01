@@ -19,6 +19,9 @@ function MainContent(){
     const pathParts = location.pathname.split('/');
     // console.log(pathParts);
 
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    console.log(userData);
+
     const [message, setMessage] = useState('');
     const showMsg = (msg) => {
         setMessage(msg);
@@ -38,18 +41,38 @@ function MainContent(){
                             <h2>Spark</h2>
                         </a>
 
-                        {/* <button className="chat-now-btn"><i>Chat Now</i></button> */}
-                        {/* if account is verified */}
+                        {userData && (userData.channelID?.length > 0) ? (
+                            <Link to={`/channels/${userData.channelID}`} title="channels">
+                                <button className="chat-now-btn"><i>Chat Now</i></button>
+                            </Link>
+                        ) : 
+                            null
+                        }
                     </div>
                     <div className="notification-profile-icons">
-                        <IconButton onClick={()=>{showMsg("Account is not verified")}}>
-                            {message && <p style={{ color: 'white', fontSize: "16px" }}>{message}</p>}
-                            <GppMaybeIcon fontSize="medium" className="verification-icon"/>
-                        </IconButton>
-                        {/* <IconButton onClick={()=>{showMsg('Account is verified')}}>
-                            {message && <p style={{ color: 'white', fontSize: "16px" }}>{message}</p>}
-                            <VerifiedUserIcon fontSize="medium" className="verification-icon"/>
-                        </IconButton> */}
+                        {userData ? (
+                            userData.channelID?.length > 0 ? (
+                                <IconButton onClick={() => { showMsg('Account is verified'); }}>
+                                    {message && <p style={{ color: 'white', fontSize: "16px" }}>{message}</p>}
+                                    <VerifiedUserIcon fontSize="medium" className="verification-icon" />
+                                </IconButton>
+                            ) 
+                            : (
+                                <Link to="/verification" title="verification">
+                                    <IconButton>
+                                        <GppMaybeIcon fontSize="medium" className="verification-icon" />
+                                    </IconButton>
+                                </Link>
+                            )
+                        ) 
+                        : (
+                            <Link to="/verification" title="verification">
+                                    <IconButton>
+                                        <GppMaybeIcon fontSize="medium" className="verification-icon" />
+                                    </IconButton>
+                            </Link>
+                        )
+                        }
                         {/* <IconButton onClick={()=>{showMsg("Verification is in Proccess")}}>
                             {message && <p style={{ color: 'white', fontSize: "16px" }}>{message}</p>}
                             <SafetyCheckIcon fontSize="medium" className="verification-icon"/>
@@ -60,16 +83,28 @@ function MainContent(){
                             <NotificationsIcon fontSize="medium" className="notification-icon icon"/>
                         </IconButton>
 
-                        {/* <IconButton title="Profile">
-                            <AccountCircleIcon fontSize="large" className="profile-icon icon"/>
-                        </IconButton> */}
-                        <Link to="/login" title="login">
-                            <LoginButton loginSignup="Login" />
-                        </Link>
+                        {userData ? (
+                            userData.profileImage?.length > 0 ? (
+                                <IconButton title="Profile">
+                                    <img src={userData.profileImage} alt="profile" className="nav-profile-pic"/>
+                                </IconButton>
+                            ) 
+                            : (
+                                <IconButton title="Profile">
+                                    <AccountCircleIcon fontSize="large" className="profile-icon icon"/>
+                                </IconButton>
+                            )
+                        ) 
+                        : (
+                            <Link to="/login" title="Login">
+                                <LoginButton loginSignup="Login" />
+                            </Link>
+                        )
+                        }
                     </div>
                 </div>
 
-                {(location.pathname === '/login' || location.pathname === '/signup') && <Outlet />}
+                {(location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/verification') && <Outlet />}
 
                 <div className="msg-container">
                     {(location.pathname === '/') && <WelcomePage/> }

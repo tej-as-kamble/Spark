@@ -1,10 +1,11 @@
 import './App.css'
-import LeftSide from './components/leftSide.jsx'
+import LeftSide from './components/LeftSide.jsx'
 import LoginSignUpForm from './components/LoginSignUpForm.jsx'
+import VerificationForm from './components/VerificationForm.jsx'
 import MainContent from './components/MainContent.jsx'
 import {Routes, Route} from 'react-router-dom'
 import ShowMsg from './components/ShowMsg.jsx'
-import Admin from './components/admin.jsx'
+import Admin from './components/Admin.jsx'
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<><LeftSide/> <MainContent/></>}>
             <Route path='login' element={<LoginSignUpForm formType='login'/>}/>
             <Route path='signup' element={<LoginSignUpForm formType='signup'/>}/>
+            <Route path='verification' element={<VerificationForm/>}/>
             <Route path='/channels/:id' element={<ShowMsg/>}/>
           </Route> 
           <Route path='/admin'  element={<Admin/>}/>
