@@ -1,62 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp() {
-    const [formData, setFormData] = useState({ name: '', username: '', password: '' });
+    const [formData, setFormData] = useState({profileImage: null, name: '', username: '', dateOfBirth: '', password: ''});
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const [image, setImage] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const imageUrl = URL.createObjectURL(file);
+            setImage(imageUrl);
+            setFormData({
+                ...formData,
+                profileImage: file
+            });
+        } else {
+          alert('Please select a valid image file.');
+        }
+    };
+
+
     const handleSubmit = async (e) => {
-        setLoading(true);
         e.preventDefault();
+        setLoading(true);
         setSuccessMessage('');
         setErrorMessage('');
-
-        if(formData.name.length<1 || formData.username.length<1 || formData.password.length<1){
-            setLoading(false);
-            setErrorMessage("All necesaary inputs field have not been fiiied.");
-            return;
-        }
-
+    
+        const formDataToSend = new FormData();
+        formDataToSend.append('profileImage', formData.profileImage);
+        formDataToSend.append('name', formData.name);
+        formDataToSend.append('username', formData.username);
+        formDataToSend.append('dateOfBirth', formData.dateOfBirth);
+        formDataToSend.append('password', formData.password);
+    
         try {
             const response = await fetch('http://localhost:5000/user/signup', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
+                body: formDataToSend,
             });
-            
+    
             const userData = await response.json();
-            // console.log(userData);
             if (response.ok) {
                 localStorage.setItem('userData', JSON.stringify(userData));
-                setSuccessMessage('Congratulations! Sign-up successful..');
+                setSuccessMessage('Congratulations! Sign-up successful.');
                 setLoading(false);
                 setTimeout(() => {
-                    navigate("/");  // Redirect after a short delay
+                    navigate('/');
                 }, 1000);
             } else {
-                setLoading(false);
-                // console.log(userData.message);
                 setErrorMessage(userData.message || 'Signup failed. Please try again.');
+                setLoading(false);
             }
         } catch (error) {
-            setLoading(false);
             setErrorMessage('An error occurred. Please try again.');
-            console.error('Error:', error);
+            setLoading(false);
         }
     };
+    
+
+    useEffect(() => {
+        console.log(formData);
+    }, [formData]);
 
     return (
     <>
@@ -76,6 +92,20 @@ function SignUp() {
                 <h2>Sign Up Now:</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-content">
+                        <div className="form-profile-image">
+                            <input
+                                type="file"
+                                id="form-profile-image-input"
+                                name="profileImage"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                required
+                                className="hidden-input"
+                            />
+                            <label htmlFor="form-profile-image-input" className="custom-file-label">
+                                {image ? <img src={image} alt="Profile Preview" className="preview-image" /> : "Profile Image"}
+                            </label>
+                        </div>
                         <div className="form-name">
                             <label htmlFor="name">Name: </label>
                             <input
@@ -93,6 +123,16 @@ function SignUp() {
                                 name="username"
                                 placeholder="Username"
                                 value={formData.username}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        <div className="form-dob">
+                            <label htmlFor="dateOfBirth">Date Of Birth: </label>
+                            <input
+                                type="date"
+                                name="dateOfBirth"
+                                placeholder="Date Of Birth"
+                                value={formData.dateOfBirth}
                                 onChange={handleChange}
                             />
                         </div>

@@ -1,47 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import './LeftSide.css';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchBar from './SearchBar.jsx';
 import { IconButton } from '@mui/material';
-import SideBarLoginBtn from './SideBarLoginBtn.jsx';
+import LoginButton from './LoginButton.jsx';
 import Channels from './Channels.jsx';
-import { useNavigate } from 'react-router-dom';
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate, Link } from 'react-router-dom';
 
 function LeftSide() {
   const navigate = useNavigate();
-  const userData = JSON.parse(localStorage.getItem("userData"));
-  // console.log(userData);
 
-  const [loading, setLoading] = useState(false);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [focusSearch, setFocusSearch] = useState(false);
-  const [showPopularChannels, setShowPopularChannels] = useState(true); //for popular button
-  const [showFollowingChannels, setShowFollowingChannels] = useState(false); //for following button
-  const [AllChannelData, setAllChannelData] = useState([]);
-  const [AllFollowingList, setAllFollowingList] = useState([]);
-
-  const allChannels = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch('http://localhost:5000/user/all-channels', {
-        method: 'GET',
-      });
-      const data = await response.json();
-      console.log(data);
-      setAllChannelData(data);
-    } catch (error) {
-      console.error("Error fetching all channels data:", error);
-    }
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    allChannels();
-  }, []);
+  const [showPopularChannels, setShowPopularChannels] = useState(true);
+  const [showFollowingChannels, setShowFollowingChannels] = useState(false);
+  const [showLoginBtn, setShowLoginBtn] = useState(false);
 
 
   const handleSearchClick = () => {
@@ -50,56 +25,33 @@ function LeftSide() {
   };
 
   const handlePopularClick = () => {
-    setShowPopularChannels(true);
     setShowFollowingChannels(false);
+    setShowLoginBtn(false);
+    setShowPopularChannels(true);
   }
 
   const handleFollowingClick = () => {
-    setShowFollowingChannels(true);
+    if(document.cookie.includes("token")){
+      setShowFollowingChannels(true);
+    }
+    else{
+      setShowFollowingChannels(false);
+      setShowLoginBtn(true);
+    }
     setShowPopularChannels(false);
-
-    const followingChannels = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch('http://localhost:5000/user/following-list', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: userData.username,
-            password: userData.password,
-          }),
-        });
-        if (response.ok) {
-          setLoading(false);
-          const data = await response.json();
-          const followingList = data.followingList;
-          const channelDetailsPromises = followingList.map(channelUsername =>
-            fetch(`http://localhost:5000/user/all-channels?username=${channelUsername}`, {
-              method: 'GET',
-            }).then(res => res.json())
-          );
-          const allFollowingData = await Promise.all(channelDetailsPromises);
-          setAllFollowingList(allFollowingData);
-        }
-      } catch (error) {
-        console.error("Error checking following status:", error);
-      }
-    };
-    followingChannels();
   }
+
+  useEffect(()=>{
+    // console.log(document.cookie.includes("token"));
+    if(document.cookie.includes("token")){
+      setShowLoginBtn(false);
+      if(!showPopularChannels) handleFollowingClick();
+    }
+  }, [document.cookie.includes("token")]);
 
 
   return (
     <div className='left-side'>
-      <Backdrop
-          sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
-          open={loading}
-          className="left-side-loading"
-          >
-          <CircularProgress color="inherit" />
-      </Backdrop>
       <div className='nav-bar'>
         <IconButton onClick={() => { navigate('/') }} title="Home">
           <HomeIcon fontSize="large" className='home-icon icon' />
@@ -118,18 +70,21 @@ function LeftSide() {
         <SearchBar focus={focusSearch} />
       </div>
 
-      {showFollowingChannels &&
-        (!userData ?
-          <SideBarLoginBtn />
-          : AllFollowingList.length>0 ? 
-            <Channels channelData={AllFollowingList}/> 
-            : <p className="zero-following">You are not following any celebrity, WHY?</p>
-        )
-      }
-      {showPopularChannels && <Channels channelData={AllChannelData} />}
+      {showFollowingChannels && <Channels apiEndpoint="http://localhost:5000/user/fetch-following" />}
+      {showPopularChannels && <Channels apiEndpoint="http://localhost:5000/fetch-all-channels" />}
 
 
-      {/* <SideBarLoginBtn/> */}
+      {showLoginBtn && (
+        <div className='sidebar-login-btn'>
+          <Link to="/login">
+              <LoginButton loginSignup="Login" />
+          </Link>
+          <p>or</p>
+          <Link to="/signup">
+              <LoginButton loginSignup="SignUp" />
+          </Link>
+      </div>
+      )}
     </div>
   );
 }

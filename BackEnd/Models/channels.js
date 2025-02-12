@@ -2,20 +2,12 @@ const mongoose = require("mongoose");
 
 const channelModel = mongoose.Schema(
     {
-        name: {
-            type: String,
-            required: true,
-        },
         username: {
             type: String,
             required: true,
         },
-        profileImage: {
-            type: String, // Base64 encoded image data
-            // required: true, 
-        },
-        Message: [
-            {
+        Message:{
+            type: [{
                 content: {
                     type: String,
                     default: ""
@@ -24,8 +16,13 @@ const channelModel = mongoose.Schema(
                     type: Date,
                     default: Date.now,
                 },
-            }
-        ],
+            }],
+            default: [],
+        },
+        CountMsg:{
+            type: Number,
+            default: 0,
+        }
     },
     { 
         timestamps: true,

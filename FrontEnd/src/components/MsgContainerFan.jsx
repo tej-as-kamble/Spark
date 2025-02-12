@@ -7,16 +7,15 @@ import GroupRemoveIcon from '@mui/icons-material/GroupRemove'; //after added to 
 function MsgContainerFan({channelUsername}){
     const [ChannelData, setChannelData] = useState([]);
     const [isFollowing, setIsFollowing] = useState(false);
-    const userData = JSON.parse(localStorage.getItem("userData"));
 
     const channel = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/user/all-channels?username=${channelUsername}`, {
+            const response = await fetch(`http://localhost:5000/fetch-all-channels?channel=${channelUsername}`, {
                 method: 'GET',
             });
             const data = await response.json();
             // console.log(data);
-            setChannelData(data);
+            if(data) setChannelData(data);
         } catch (error) {
             console.error("Error fetching all channels data:", error);
         }
@@ -25,19 +24,16 @@ function MsgContainerFan({channelUsername}){
 
     const isFollowingChannel = async () => {
         try {
-            const response = await fetch('http://localhost:5000/user/following-list', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    username: userData.username,
-                    password: userData.password,
-                    channelUsername,
-                }),
+            const response = await fetch(`http://localhost:5000/user/fetch-following?channel=${channelUsername}`, {
+                method: 'GET',
+                credentials: "include",
             });
-            const data = await response.json();
-            setIsFollowing(data.isFollowing);
+            if(response.ok){
+                const data = await response.json();
+                // console.log(data);
+                if(data) setIsFollowing(true);
+                else setIsFollowing(false);
+            }
         } catch (error) {
             console.error("Error checking following status:", error);
         }
@@ -45,6 +41,9 @@ function MsgContainerFan({channelUsername}){
     
 
     const handleFollowUnfollow = async () => {
+        if(!document.cookie.includes("token")){
+            return alert("Login to follow your favorite celebrity");
+        }
         try {
             const reqFor = isFollowing ? "unfollow" : "follow";
             const response = await fetch('http://localhost:5000/user/follow', {
@@ -53,14 +52,19 @@ function MsgContainerFan({channelUsername}){
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: userData.username,
-                    password: userData.password,
-                    channelUsername,
-                    reqFor,
+                    channelUsername: channelUsername,
+                    reqFor: reqFor,
                 }),
+                credentials: 'include',
             });
+
             if (response.ok) {
+                // const data = await response.json();
+                // console.log(data);
                 setIsFollowing(!isFollowing);
+            }
+            else{
+                console.error("Error following/unfollowing channel:", error);
             }
         } catch (error) {
             console.error("Error following/unfollowing channel:", error);
@@ -70,13 +74,15 @@ function MsgContainerFan({channelUsername}){
 
     useEffect(() => {
         channel();
-        isFollowingChannel();
+        if(document.cookie.includes("token")) isFollowingChannel();
     }, [channelUsername]);
     
     return(
         <div className="msg-container-user">
             <div className='channel-info'>
-                <img src={profileImage} alt="profile" className='profile-pic'/>
+                <img 
+                    src={ChannelData.profileImage ? `data:image/png;base64,${ChannelData.profileImage}` : profileImage} alt="profile" className='profile-pic' 
+                />
                 <div>
                     <h3>{ChannelData.name ? ChannelData.name : "User Not Found"}</h3>
                     <p className='username'>@{ChannelData.username ? ChannelData.username : "sparkuser"}</p>

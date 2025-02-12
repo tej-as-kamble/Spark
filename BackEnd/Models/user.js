@@ -7,7 +7,11 @@ const userModel = mongoose.Schema(
             type: String,
             required: true,
         },
-        username: {
+        dateOfBirth: {
+            type: Date,
+            required: true
+        },
+        username: { // primary key
             type: String,
             required: true,
         },
@@ -19,13 +23,10 @@ const userModel = mongoose.Schema(
             type: String, // Base64 encoded image data
             default: "",
         },
-        followingList:{
-            type: [String],
-            default: [],
-        },
-        channelID:{
-            type: String,
-            default: "",
+        channel:{
+            type: Number,
+            enum: [1, 0, -1],
+            default: 0,
         },
     },
     { 

@@ -36,19 +36,20 @@ function SignUp() {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/user/verification', {
+            const response = await fetch('http://localhost:5000/user/verify-request', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
+                credentials: "include",
             });
             
-            const userData = await response.json();
-            // console.log(userData);
+            const data = await response.json();
+            console.log(data);
             if (response.ok) {
                 setSuccessMessage('Verification request has been sent successfully.');
-                setLoading(false);
+                // setLoading(false);
                 setTimeout(() => {
                     setLoading(true);
                 }, 1000);
@@ -58,8 +59,8 @@ function SignUp() {
                 }, 1500);
             } else {
                 setLoading(false);
-                // console.log(userData.message);
-                setErrorMessage(userData.message || 'Verification request failed. Please try again.');
+                // console.log(data.message);
+                setErrorMessage(data.message || 'Verification request failed. Please try again.');
             }
         } catch (error) {
             setLoading(false);

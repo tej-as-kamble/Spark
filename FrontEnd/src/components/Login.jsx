@@ -20,12 +20,6 @@ function Login() {
         e.preventDefault();
         setErrorMessage('');
 
-        if(formData.username.length<1 || formData.password.length<1){
-            setLoading(false);
-            setErrorMessage("All necesaary inputs field have not been fiiied.");
-            return;
-        }
-
         try {
             const response = await fetch('http://localhost:5000/user/login', {
                 method: 'POST',
@@ -33,15 +27,17 @@ function Login() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
+                credentials: 'include',
             });
 
             const userData = await response.json();
-            // console.log(userData);
+            console.log(userData);
             if (response.ok) {
                 localStorage.setItem('userData', JSON.stringify(userData));
                 setTimeout(() => {
                     setLoading(false);
-                    navigate("/");  // Redirect after a short delay
+                    if(userData.username === "admin") navigate("/admin");
+                    else navigate("/");  // Redirect after a short delay
                 });
             } else {
                 setLoading(false);

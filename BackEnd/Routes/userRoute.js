@@ -1,16 +1,18 @@
 const express = require("express");
-const { loginController, signupController, verificationController, channelController, verificationDataController, AllchannelController, followController, followingListController} = require("../Controllers/userController");
+const { signupController, loginController, logoutController, followingController, followController, verifyController} = require("../Controllers/userController");
 const Router = express.Router();
+const authorizeJWT = require('../middleware/authorization');
+
+const multer = require("multer");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 
 Router.post('/login', loginController);
-Router.post('/signup', signupController);
-Router.post('/verification', verificationController);
-Router.post('/channels', channelController);
-
-Router.get('/verification-data', verificationDataController);
-Router.get('/all-channels', AllchannelController);
-Router.post('/follow', followController);
-Router.post('/following-list', followingListController);
+Router.post('/logout', authorizeJWT, logoutController);
+Router.post('/signup', upload.single('profileImage'), signupController);
+Router.get('/fetch-following', authorizeJWT, followingController);
+Router.post('/follow', authorizeJWT, followController);
+Router.post('/verify-request', authorizeJWT, verifyController);
 
 module.exports = Router;

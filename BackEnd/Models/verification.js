@@ -2,17 +2,9 @@ const mongoose = require("mongoose");
 
 const verificationModel = mongoose.Schema(
     {
-        name: {
+        username: { //foreign kay
             type: String,
             required: true,
-        },
-        username: {
-            type: String,
-            required: true,
-        },
-        profileImage: {
-            type: String, // Base64 encoded image data and this is required
-            default: "", 
         },
         email: {
             type: String,
@@ -22,9 +14,9 @@ const verificationModel = mongoose.Schema(
             type: String,
             required: true,
         },
-        channelID: {
-            type: String,
-            default: "",
+        channel: {
+            type: Boolean,
+            default: false,
         }
     },
     { 

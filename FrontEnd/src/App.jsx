@@ -6,6 +6,8 @@ import MainContent from './components/MainContent.jsx'
 import {Routes, Route} from 'react-router-dom'
 import ShowMsg from './components/ShowMsg.jsx'
 import Admin from './components/Admin.jsx'
+import BothSide from './BothSide.jsx'
+import Logout from './components/Logout.jsx'
 
 
 function App() {
@@ -16,13 +18,14 @@ function App() {
         {/* <LoginSignUpForm/> */}
 
         <Routes>
-          <Route path='/' element={<><LeftSide/> <MainContent/></>}>
+          <Route path='/' element={<BothSide/>}>
             <Route path='login' element={<LoginSignUpForm formType='login'/>}/>
             <Route path='signup' element={<LoginSignUpForm formType='signup'/>}/>
             <Route path='verification' element={<VerificationForm/>}/>
-            <Route path='/channels/:id' element={<ShowMsg/>}/>
+            <Route path='/channels/:username' element={<ShowMsg/>}/>
+            <Route path='/admin'  element={<Admin/>}/>
           </Route> 
-          <Route path='/admin'  element={<Admin/>}/>
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </div>
   )

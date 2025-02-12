@@ -1,10 +1,14 @@
+.main-loading{
+    margin-left: 25%;
+}
+
 .notification-profile-icons{
     display: flex;
     align-items: center;
 }
 
 .nav-profile-pic{
-    width: 35px;
+    width: 40px;
     border-radius: 50%;
 }
 
@@ -38,6 +42,66 @@
 }
 
 
+
+
+.profile-option {
+    background-color: rgb(131, 165, 165);
+    position: absolute;
+    right: 43px;
+    top: 60px;
+    width: 10%;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    border-radius: 30px 0px 30px 15px;
+    overflow: hidden;
+}
+
+.profile-option div{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    border-radius: 10px;
+}
+
+.profile-option button{
+    width: 90%;
+    text-align: left;
+    padding: 15px;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    text-decoration: none;
+}
+.profile-option button:hover {
+    cursor: pointer;
+}
+
+.profile-option div:hover {
+    background-color: #b6b6b6;
+}
+
+#close-icon{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+}
+
+#close-icon svg{
+    position: absolute;
+    right: 10px;
+}
+
+#close-icon:hover{
+    color: black;
+}
+
+
+
+
+
+
 .msg-container {
     flex: 1;
     color: white;
@@ -53,6 +117,7 @@
 
 .all-msg{
     width: 70%;
+    height: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -91,10 +156,16 @@
 
 /*own-msg starts from here */
 .own-msg{
-    display: flex;
-    flex-direction: column;
     align-items: flex-end;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
 }
+
+.own-msg::-webkit-scrollbar {
+    width: 0;
+  }
 
 .each-own-msg{
     background-color: green;
@@ -117,24 +188,179 @@
 
 
 /*others-msg starts from here */
-.profile-img-and-msg{
+.other-msg {
+    height: 100%; /* Ensure there is enough height */
+    overflow-y: auto;
     display: flex;
+    flex-direction: column-reverse;
 }
+
+.other-msg::-webkit-scrollbar {
+  width: 0;
+}
+
+.profile-img-and-msg {
+    display: flex;
+    align-items: flex-start;
+    width: 50%;
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.profile-img-and-msg.removed {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.profile-img-and-msg.edited {
+    animation: highlightEdit 0.5s ease-in-out;
+}
+
 
 .msg-profile-img img{
     width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 2px solid yellow;
+    object-fit: cover;
 }
 
 .each-others-msg{
     background-color: rgb(84, 85, 85);
     margin: 5px;
-    width: 50%;
+    width: 90%;
     padding: 10px;
     border-radius: 0px 20px 20px 30px;
     box-shadow: 5px 5px 10px -3px #000000;
+    color: white;
+    font-size: 16px;
+    max-width: 80%;
+    word-break: break-word;
 }
+
+.msg-and-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.msg {
+    width: fit-content;
+    word-wrap: break-word;  /* Ensures long words break */
+    overflow-wrap: break-word; /* Handles text breaking in most cases */
+    white-space: normal;
+}
+
+.hidden-option-icon {
+    visibility: hidden; /* Hide by default */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.each-others-msg:hover .hidden-option-icon{
+    visibility: visible;
+    opacity: 1;
+}
+
+.each-others-msg:hover {
+    background-color: rgb(89, 92, 92);
+}
+
+
+
+
+.msg-options-container {
+    width: 50%;
+    min-width: fit-content;
+    height: auto;
+    background-color: rgba(20, 50, 60, 0.9);
+    box-shadow: -1px -1px 10px 1px #000000;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 100;
+    top: -60px;
+    left: 90%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.msg-btn-delete, .msg-btn-edit {
+    width: 90%;
+    margin: 5px auto;
+    padding: 6px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: left;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+
+.msg-input-container {
+    width: 90%;
+    margin: 5px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji-icon{
+    position: absolute;
+    left: 2px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: white;
+    transition: color 0.2s ease-in-out;
+}
+
+
+.msg-input {
+    background-color: rgb(31 29 41);
+    border: none;
+    padding: 8px 40px 8px 30px;
+    border-radius: 20px;
+    transition: border 0.2s ease-in-out;
+    width: 100%;
+    color: white;
+    outline: none;
+}
+
+
+.send-btn {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: white;
+    transition: color 0.2s ease-in-out;
+}
+
+.send-btn:hover .send-icon {
+    color: #007bff;
+}
+
 /*others-msg ends from here */
 
 
@@ -148,6 +374,7 @@
 
 .profile-pic{
     width: 60px;
+    height: 60px;
     border-radius: 50%;
 }
 
