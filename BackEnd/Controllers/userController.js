@@ -45,7 +45,7 @@ const signupController = expressAsyncHandler(async (req, res) =>{
         res.cookie('token', response.token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: 'None',
         });
         return res.json(response);
     }
@@ -78,7 +78,7 @@ const loginController = expressAsyncHandler(async (req, res) => {
         res.cookie('token', response.token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'strict',
+            sameSite: 'None',
         });
         return res.json(response);
     }
