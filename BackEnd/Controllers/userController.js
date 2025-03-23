@@ -9,7 +9,7 @@ const generateToken = require("../Config/GenerateToken");
 
 //SignUp
 const signupController = expressAsyncHandler(async (req, res) =>{
-    console.log(req.body);
+    // console.log(req.body);
     const {name, dateOfBirth, username, password} = req.body;
     
     if(!name || !dateOfBirth || !username || !password){
@@ -26,7 +26,7 @@ const signupController = expressAsyncHandler(async (req, res) =>{
 
     let profileImage = "";
     if (req.file) {
-        console.log(req.file);
+        // console.log(req.file);
         profileImage = req.file.buffer.toString("base64"); // Convert image to Base64
     }
 
@@ -182,7 +182,7 @@ const followingController = expressAsyncHandler(async (req, res) =>{
 // follow-unfollow request
 const followController = expressAsyncHandler(async (req, res) => {
     const { username, channelUsername, reqFor} = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     const user = await followingModel.findOne({username}, {_id:0,  username:1});
     // console.log(user);
@@ -225,7 +225,7 @@ const followController = expressAsyncHandler(async (req, res) => {
 
 //request for verification
 const verifyController = expressAsyncHandler(async (req, res)=>{
-    console.log(req.body);
+    // console.log(req.body);
     const {username, email, instagramLink, isAdmin} = req.body;
 
     if(isAdmin){

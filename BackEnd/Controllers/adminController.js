@@ -18,24 +18,22 @@ const createChannel = expressAsyncHandler(async (req, res)=>{
         throw new Error("Admin can'n create channel");
     }
 
-    const channelExits = await channelModel.findOne({username});
-    
-    const user = await userModel.findOneAndUpdate(
-        {username},
-        {channel: 1}
-    )
-
-    console.log(user);
-
     const verification = await verificationModel.updateOne(
         {username},
         {channel: true}
     )
+    // console.log(verification);
 
+    const channelExits = await channelModel.findOne({username});
     if(channelExits){
         res.status(400).json({ message: "Channel already exits" });
         throw new Error("Channel already exits");
     }
+
+    const user = await userModel.findOneAndUpdate(
+        {username},
+        {channel: 1}
+    )
 
     if(user){
         const channel = await channelModel.create({username});
@@ -57,7 +55,7 @@ const createChannel = expressAsyncHandler(async (req, res)=>{
 //to delete a channel
 const deleteChannel = expressAsyncHandler(async (req, res)=>{
     const {username, isAdmin} = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     if(!isAdmin){
         res.status(400).json({ message: "Only admin can delete channel" });
@@ -173,7 +171,7 @@ const countUsers = expressAsyncHandler(async (req, res)=>{
                 {},
                 { _id: 1}
             );
-            console.log(reqFor, getInfo);
+            // console.log(reqFor, getInfo);
         }
         else if(reqFor === 'verification'){
             getInfo = await verificationModel.find(

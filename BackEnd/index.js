@@ -15,11 +15,11 @@ const app = express();
 const server = http.createServer(app); // Create HTTP server
 
 const io = new Server(server, {
-    cors: { origin: "http://localhost:5173", credentials: true },
+    cors: { origin: process.env.SERVER_URL, credentials: true },
 });
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: process.env.SERVER_URL, credentials: true }));
 app.use(cookieParser());
 
 // Attach `io` to `req` so controllers can use it
