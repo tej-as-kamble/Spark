@@ -1,5 +1,5 @@
 import './form.css';
-import Login from './login.jsx';
+import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 
 function LoginForm(formType){
