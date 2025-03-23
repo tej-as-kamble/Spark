@@ -381,7 +381,7 @@
 .msg-container-user{
     display: flex;
     justify-content: space-between;
-    width: 70%;
+    min-width: 70%;
     gap: 5px;
     align-items: center;
     background-color: rgb(37 35 49);

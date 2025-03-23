@@ -6,7 +6,7 @@ function Admin() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const checkAdmin = async () => {
-        const response = await fetch('http://localhost:5000/admin/is-admin', {
+        const response = await fetch('https://spark-zgmc.onrender.com/admin/is-admin', {
             method: 'GET',
             credentials: 'include'
         });

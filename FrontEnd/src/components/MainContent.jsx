@@ -45,12 +45,17 @@ function MainContent(){
                             <h2>Spark</h2>
                         </a>
 
-                        {userData && userData.channel ? (
+                        {userData && userData.channel==1 ? (
                             <Link to={`/channels/${userData.username}`} title="channels">
                                 <button className="chat-now-btn"><i>Chat Now</i></button>
                             </Link>
                         ) : 
-                            null
+                        userData && userData.username == "admin" ? (
+                                <Link to={`/${userData.username}`} title="channels">
+                                <button className="chat-now-btn"><i>Admin</i></button>
+                            </Link>
+                            ) :
+                                null
                         }
                     </div>
                     <div className="notification-profile-icons">

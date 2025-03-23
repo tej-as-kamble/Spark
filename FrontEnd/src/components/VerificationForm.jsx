@@ -36,7 +36,7 @@ function SignUp() {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/user/verify-request', {
+            const response = await fetch('https://spark-zgmc.onrender.com/user/verify-request', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function SignUp() {
             });
             
             const data = await response.json();
-            console.log(data);
+            // console.log(data);
             if (response.ok) {
                 setSuccessMessage('Verification request has been sent successfully.');
                 // setLoading(false);

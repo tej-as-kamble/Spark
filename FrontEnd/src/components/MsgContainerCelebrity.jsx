@@ -7,7 +7,7 @@ import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import AttachFileOutlinedIcon from '@mui/icons-material/AttachFileOutlined';
 
-const socket = io("http://localhost:5000");
+const socket = io("https://spark-zgmc.onrender.com");
 
 function MsgContainerCelebrity() {
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -26,7 +26,7 @@ function MsgContainerCelebrity() {
         socket.emit("sendMessage", newMessage);
     
         try {
-            const response = await fetch("http://localhost:5000/channel/add-message", {
+            const response = await fetch("https://spark-zgmc.onrender.com/channel/add-message", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

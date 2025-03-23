@@ -21,7 +21,7 @@ function Login() {
         setErrorMessage('');
 
         try {
-            const response = await fetch('http://localhost:5000/user/login', {
+            const response = await fetch('https://spark-zgmc.onrender.com/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ function Login() {
             });
 
             const userData = await response.json();
-            console.log(userData);
+            // console.log(userData);
             if (response.ok) {
                 localStorage.setItem('userData', JSON.stringify(userData));
                 setTimeout(() => {
@@ -41,7 +41,7 @@ function Login() {
                 });
             } else {
                 setLoading(false);
-                console.log(userData.message);
+                // console.log(userData.message);
                 setErrorMessage(userData.message || 'Login failed. Please try again.');
             }
         } catch (error) {

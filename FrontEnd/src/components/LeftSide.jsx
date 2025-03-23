@@ -70,8 +70,8 @@ function LeftSide() {
         <SearchBar focus={focusSearch} />
       </div>
 
-      {showFollowingChannels && <Channels apiEndpoint="http://localhost:5000/user/fetch-following" />}
-      {showPopularChannels && <Channels apiEndpoint="http://localhost:5000/fetch-all-channels" />}
+      {showFollowingChannels && <Channels apiEndpoint="https://spark-zgmc.onrender.com/user/fetch-following" />}
+      {showPopularChannels && <Channels apiEndpoint="https://spark-zgmc.onrender.com/fetch-all-channels" />}
 
 
       {showLoginBtn && (

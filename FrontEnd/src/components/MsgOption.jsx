@@ -5,7 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined';
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://spark-zgmc.onrender.com");
 
 function MsgOptions({ msgId, msg, setActiveMsgId }) {
     const [showEditBtn, setShowEditBtn] = useState(true);
@@ -22,7 +22,7 @@ function MsgOptions({ msgId, msg, setActiveMsgId }) {
     
     const deleteMsg = async () => {
         try {
-            const response = await fetch("http://localhost:5000/channel/delete-message", {
+            const response = await fetch("https://spark-zgmc.onrender.com/channel/delete-message", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ _id: msgId }),
@@ -44,7 +44,7 @@ function MsgOptions({ msgId, msg, setActiveMsgId }) {
     
     const handleEditMessage = async () => {
         try {
-            const response = await fetch("http://localhost:5000/channel/edit-message", {
+            const response = await fetch("https://spark-zgmc.onrender.com/channel/edit-message", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ _id: msgId, editedMsg }),

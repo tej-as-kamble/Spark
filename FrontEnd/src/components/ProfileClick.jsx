@@ -11,7 +11,7 @@ function ProfileClick(){
 
     const handleClick = ()=>{
         setProfileClick(!profileClick);
-        console.log(profileClick);
+        // console.log(profileClick);
     }
 
     return (

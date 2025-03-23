@@ -13,9 +13,6 @@ import Logout from './components/Logout.jsx'
 function App() {
   return (
       <div className='app'>
-        {/* <LeftSide/> */}
-        {/* <MainContent/> */}
-        {/* <LoginSignUpForm/> */}
 
         <Routes>
           <Route path='/' element={<BothSide/>}>

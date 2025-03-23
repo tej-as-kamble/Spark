@@ -10,7 +10,7 @@ function MsgContainerFan({channelUsername}){
 
     const channel = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/fetch-all-channels?channel=${channelUsername}`, {
+            const response = await fetch(`https://spark-zgmc.onrender.com/fetch-all-channels?channel=${channelUsername}`, {
                 method: 'GET',
             });
             const data = await response.json();
@@ -24,7 +24,7 @@ function MsgContainerFan({channelUsername}){
 
     const isFollowingChannel = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/user/fetch-following?channel=${channelUsername}`, {
+            const response = await fetch(`https://spark-zgmc.onrender.com/user/fetch-following?channel=${channelUsername}`, {
                 method: 'GET',
                 credentials: "include",
             });
@@ -46,7 +46,7 @@ function MsgContainerFan({channelUsername}){
         }
         try {
             const reqFor = isFollowing ? "unfollow" : "follow";
-            const response = await fetch('http://localhost:5000/user/follow', {
+            const response = await fetch('https://spark-zgmc.onrender.com/user/follow', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

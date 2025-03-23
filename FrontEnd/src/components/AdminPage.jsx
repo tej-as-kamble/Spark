@@ -30,7 +30,7 @@ function AdminPage() {
 
     const fetchCounts = async (reqFor)=>{
         try {
-            const response = await fetch(`http://localhost:5000/admin/countUsers?reqFor=${reqFor}`, {
+            const response = await fetch(`https://spark-zgmc.onrender.com/admin/countUsers?reqFor=${reqFor}`, {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -67,7 +67,7 @@ function AdminPage() {
         const start = pendingBtn ? pendingStart : verifiedStart;
         // console.log(start);
         try {
-            const response = await fetch(`http://localhost:5000/admin/fetch-all-verification-data?start=${start}&limit=${l}&isVerified=${!pendingBtn}`, {
+            const response = await fetch(`https://spark-zgmc.onrender.com/admin/fetch-all-verification-data?start=${start}&limit=${l}&isVerified=${!pendingBtn}`, {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -94,7 +94,7 @@ function AdminPage() {
                     setVerifiedData((prev) => {
                         const updatedVerifiedData = [...prev, ...data];
                         setVerifications(updatedVerifiedData); 
-                        console.log(verifications);
+                        // console.log(verifications);
                         return updatedVerifiedData;
                     });                    
                     setVerifiedStart((prevStart) => prevStart + l);
@@ -146,7 +146,7 @@ function AdminPage() {
 
     const createChannel = async (username) => {
         try {
-            const response = await fetch('http://localhost:5000/admin/create-channel', {
+            const response = await fetch('https://spark-zgmc.onrender.com/admin/create-channel', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -155,9 +155,9 @@ function AdminPage() {
                 credentials: 'include'
             });
             if (response.ok) {
-                console.log('Channel created successfully.');
+                // console.log('Channel created successfully.');
                 alert(`Successfully created channel for @${username}.`);
-                fetchVerifications();
+                window.location.reload();
             } else {
                 console.error("Failed to submit verification details.");
             }
@@ -169,7 +169,7 @@ function AdminPage() {
     const deleteChannel = async (username)=>{
         // console.log(username);
         try {
-            const response = await fetch('http://localhost:5000/admin/delete-channel', {
+            const response = await fetch('https://spark-zgmc.onrender.com/admin/delete-channel', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -178,9 +178,9 @@ function AdminPage() {
                 credentials: 'include'
             });
             if (response.ok) {
-                console.log(`Successfully deleted of ${username} channel.`);
+                // console.log(`Successfully deleted of ${username} channel.`);
                 alert(`Successfully deleted of ${username} channel.`);
-                fetchVerifications();
+                window.location.reload();
             } else {
                 console.error("Failed to submit verification details.");
             }

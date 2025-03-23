@@ -46,13 +46,14 @@ function SignUp() {
         formDataToSend.append('password', formData.password);
     
         try {
-            const response = await fetch('http://localhost:5000/user/signup', {
+            const response = await fetch('https://spark-zgmc.onrender.com/user/signup', {
                 method: 'POST',
                 body: formDataToSend,
             });
     
             const userData = await response.json();
             if (response.ok) {
+                // console.log(userData);
                 localStorage.setItem('userData', JSON.stringify(userData));
                 setSuccessMessage('Congratulations! Sign-up successful.');
                 setLoading(false);
@@ -70,9 +71,9 @@ function SignUp() {
     };
     
 
-    useEffect(() => {
-        console.log(formData);
-    }, [formData]);
+    // useEffect(() => {
+    //     console.log(formData);
+    // }, [formData]);
 
     return (
     <>

@@ -6,7 +6,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MsgOptions from './MsgOption';
 import { motion, AnimatePresence } from "framer-motion";
 
-const socket = io("http://localhost:5000");
+const socket = io("https://spark-zgmc.onrender.com");
 const l = 7; // limit
 
 function OthersMsg(channelData) {
@@ -31,7 +31,7 @@ function OthersMsg(channelData) {
 
     const channel = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/fetch-all-channels?channel=${username}`, {
+            const response = await fetch(`https://spark-zgmc.onrender.com/fetch-all-channels?channel=${username}`, {
                 method: 'GET',
             });
             const data = await response.json();
@@ -47,7 +47,7 @@ function OthersMsg(channelData) {
         // console.log("first time");
         const count = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/channel/coutnMsg?username=${username}`, {
+                const response = await fetch(`https://spark-zgmc.onrender.com/channel/coutnMsg?username=${username}`, {
                     method: 'GET'
                 });
 
@@ -73,7 +73,7 @@ function OthersMsg(channelData) {
     const getMsg = async () => {
         // console.log("getMsg Start: ", start);
         try {
-            const response = await fetch(`http://localhost:5000/channel/get-messages?username=${username}&start=${Math.max(start, 0)}&limit=${start > 0 ? l : Math.max(start + l, 1)}`, {
+            const response = await fetch(`https://spark-zgmc.onrender.com/channel/get-messages?username=${username}&start=${Math.max(start, 0)}&limit=${start > 0 ? l : Math.max(start + l, 1)}`, {
                 method: 'GET'
             });
 
