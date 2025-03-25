@@ -12,6 +12,8 @@ import { useNavigate, Link } from 'react-router-dom';
 function LeftSide() {
   const navigate = useNavigate();
 
+  const userData = JSON.parse(localStorage.getItem("userData"));
+
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [focusSearch, setFocusSearch] = useState(false);
   const [showPopularChannels, setShowPopularChannels] = useState(true);
@@ -31,7 +33,7 @@ function LeftSide() {
   }
 
   const handleFollowingClick = () => {
-    if(document.cookie.includes("token")){
+    if(userData){
       setShowFollowingChannels(true);
     }
     else{
@@ -42,12 +44,11 @@ function LeftSide() {
   }
 
   useEffect(()=>{
-    // console.log(document.cookie.includes("token"));
-    if(document.cookie.includes("token")){
+    if(userData){
       setShowLoginBtn(false);
       if(!showPopularChannels) handleFollowingClick();
     }
-  }, [document.cookie.includes("token")]);
+  }, [userData]);
 
 
   return (

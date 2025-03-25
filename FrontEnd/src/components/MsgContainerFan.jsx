@@ -7,6 +7,7 @@ import GroupRemoveIcon from '@mui/icons-material/GroupRemove'; //after added to 
 function MsgContainerFan({channelUsername}){
     const [ChannelData, setChannelData] = useState([]);
     const [isFollowing, setIsFollowing] = useState(false);
+    const userData = JSON.parse(localStorage.getItem("userData"));
 
     const channel = async () => {
         try {
@@ -41,7 +42,7 @@ function MsgContainerFan({channelUsername}){
     
 
     const handleFollowUnfollow = async () => {
-        if(!document.cookie.includes("token")){
+        if(!userData){
             return alert("Login to follow your favorite celebrity");
         }
         try {
@@ -74,7 +75,7 @@ function MsgContainerFan({channelUsername}){
 
     useEffect(() => {
         channel();
-        if(document.cookie.includes("token")) isFollowingChannel();
+        if(userData) isFollowingChannel();
     }, [channelUsername]);
     
     return(
