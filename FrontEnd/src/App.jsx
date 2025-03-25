@@ -3,7 +3,7 @@ import LeftSide from './components/LeftSide.jsx'
 import LoginSignUpForm from './components/LoginSignUpForm.jsx'
 import VerificationForm from './components/VerificationForm.jsx'
 import MainContent from './components/MainContent.jsx'
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Navigate} from 'react-router-dom'
 import ShowMsg from './components/ShowMsg.jsx'
 import Admin from './components/Admin.jsx'
 import BothSide from './BothSide.jsx'
@@ -23,6 +23,7 @@ function App() {
             <Route path='/admin'  element={<Admin/>}/>
           </Route> 
           <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
   )

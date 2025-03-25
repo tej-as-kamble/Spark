@@ -15,16 +15,22 @@ const app = express();
 const server = http.createServer(app); // Create HTTP server
 
 const io = new Server(server, {
-    cors: { origin: process.env.SERVER_URL, credentials: true },
+    cors: { 
+        origin: 'https://spark-frontend-kihe.onrender.com',
+        credentials: true,
+    },
 });
 
 app.use(express.json());
-app.use(cors({ origin: process.env.SERVER_URL, credentials: true }));
+app.use(cors({ 
+    origin: 'https://spark-frontend-kihe.onrender.com',
+    credentials: true,
+}));
 app.use(cookieParser());
 
 // Attach `io` to `req` so controllers can use it
 app.use((req, res, next) => {
-    req.io = io;
+    req.io = io;    
     next();
 });
 
